@@ -1,2 +1,18 @@
-<h1>Hobbies#edit</h1>
-<p>Find me in app/views/hobbies/edit.html.erb</p>
+<%= form_with(model: @hobby, local: true) do |f| %>
+  
+  <div class='field'>
+    <%= f.label :name %>
+    <%= f.text_field :name, required: true, placeholder: "Name" %>
+</div>  
+  
+  <div class='field'>
+    <%= f.label :description %>
+    <%= f.text_field :description %>
+</div>  
+  <%= f.submit %>
+<% end %>
+
+<%= link_to "Hobbies", hobbies%>
+
+
+<%= link_to 'Destroy Page', @hobbies, method: :delete %>

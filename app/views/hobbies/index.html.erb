@@ -9,6 +9,9 @@
     <li>
       <%= hobby.name %> - <%= hobby.description %>
     </li>
+ <%= link_to 'Delete Hobby', hobby_path(hobby), method: :delete%>
   <% end %>
 
 </ul>
+
+

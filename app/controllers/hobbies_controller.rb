@@ -1,5 +1,5 @@
 class HobbiesController < ApplicationController
-  before_action :set_hobbies, only: [:show, :edit, :update]
+  before_action :set_hobbies, only: [:show, :edit, :update, :destroy]
   
   
   
@@ -33,14 +33,24 @@ class HobbiesController < ApplicationController
   
   def edit
   end
-  
+
+  # def destroy
+  #   @hobby = Hobby.find(hobby_params).destroy 
+  #   redirect_to hobby_path
+  # end
+
+  def destroy
+    @hobby.destroy
+    redirect_to hobbies_path
+  end
+
   private
   def hobby_params
     params.require(:hobby).permit(:name, :description)
   end
 
   def set_hobbies 
-    @hobby = current.user.hobbies.find(params[:id])
+    @hobby = current_user.hobbies.find(params[:id])
   end
 
 end
