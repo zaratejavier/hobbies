@@ -1,10 +1,10 @@
 class HobbiesController < ApplicationController
-  before_action :set_hobbies, :only [:show, :edit, :update]
+  before_action :set_hobbies, only: [:show, :edit, :update]
   
   
   
   def index
-    @hobby = current_user.hobbies
+    @hobbies = current_user.hobbies
   end
 
   def show
@@ -17,7 +17,7 @@ class HobbiesController < ApplicationController
   def create
     @hobby = current_user.hobbies.new(hobby_params)
     if @hobby.save 
-      redirect to hobby_path
+      redirect_to hobbies_path
     else
       render :new
     end
@@ -25,7 +25,7 @@ class HobbiesController < ApplicationController
 
   def update
     if @hobby.update(hobby_params)
-      redirect_to hobbies_path
+      redirect_to hobby_path
     else
       render :edit
     end
@@ -36,12 +36,13 @@ class HobbiesController < ApplicationController
   
   private
   def hobby_params
-    parmas.require(:hobby).permit(:name, :description)
+    params.require(:hobby).permit(:name, :description)
   end
 
-def set_hobbies 
-  @hobby = current.user.hobbies.find(params[:id])
-end
+  def set_hobbies 
+    @hobby = current.user.hobbies.find(params[:id])
+  end
+
 end
 
 
